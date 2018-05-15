@@ -264,18 +264,47 @@ def validate_property_mapping_for_node_template_along_with_reqOrCap_and_property
     substitution_node_type = presentation._container._get_type(context)
     # print ("Substitution mapping node type --> ", substitution_node_type)
     node_template = _get_node_template(context, presentation)
+
+
     if node_template is None:
         _report_missing_node_template(context, presentation, field='property')
         return
 
-    for req_name in substitution_node_type._get_requirements(context):
-        if req_name == presentation._name:
-          break
-    else:
-        for cap_name in substitution_node_type._get_capabilities(context):
-            if cap_name == presentation._name:
-                break
+    node_template_capabilities = node_template._get_capabilities(context)
+    if node_template_capabilities is not None:
+        node_template_capability = node_template_capabilities.get(mapped_reqOrCap)
+        if node_template_capability is None:
+            context.validation.report(
+                u'substitution mapping capability "{0}" refers to an unknown '
+                u'capability of node template "{1}": {mapped_reqOrCap}'.format(
+                    presentation._name, node_template._name,
+                    mapped_reqOrCap=safe_repr(mapped_reqOrCap)),
+                locator=presentation._locator, level=Issue.BETWEEN_TYPES)
+            return
 
+    node_template_requirements = node_template._get_requirements(context)
+    if node_template_requirements is not None:
+        if isinstance(node_template_requirements, list):
+
+            for aRequirement in node_template_requirements:
+                for req_name in aRequirement:
+                    if req_name == mapped_reqOrCap:
+                        print "inside aRequirement&&&&&&&&&&&&&"
+                        break
+                else:
+                    print "requirements are not present in the template "
+                    context.validation.report(
+                        u'substitution mapping requirement "{0}" refers to an unknown requirement of node '
+                        u'template "{1}": {mapped_requirement_name}'.format(
+                            presentation._name, node_template._name,
+                            mapped_requirement_name=safe_repr(mapped_reqOrCap)),
+                        locator=presentation._locator, level=Issue.BETWEEN_TYPES)
+                    return
+
+
+    print "done"
+
+    
 def validate_substitution_mappings_property(context, presentation):
 
     # Validate that the capability in substitution_mapping is defined in the substitution node type
@@ -285,15 +314,17 @@ def validate_substitution_mappings_property(context, presentation):
     if substitution_node_type is None:
         return
 
-    for prop_name in substitution_node_type._get_properties(context):
-        if prop_name == presentation._name:
-          break
-    else:
-        context.validation.report(
-            u'substitution mapping requirement "{0}" is not declared in node type "{1}"'.format(
-                presentation._name, substitution_node_type._name),
-            locator=presentation._locator, level=Issue.BETWEEN_TYPES)
-        return
+    # validate the keys of node type in substitution mapping section
+    # for prop_name in substitution_node_type._get_properties(context):
+    #     if prop_name == presentation._name:
+    #       break
+    # else:
+    #     context.validation.report(
+    #         u'substitution mapping requirement "{0}" is not declared in node type "{1}"'.format(
+    #             presentation._name, substitution_node_type._name),
+    #         locator=presentation._locator, level=Issue.BETWEEN_TYPES)
+    #     return
+
 
     if isinstance(presentation._raw, dict):
         for actual_key, property_value in presentation._raw.iteritems():
