@@ -1,0 +1,16 @@
+ group_types:  
+    tosca.groups.nfv.ElementGroup:
+      _extensions:
+        normative: true
+#        shorthand_name: VNF
+#        type_qualified_name: tosca:VNF
+#        specification: tosca-simple-nfv-1.0
+#       specification_section: 6.9.1
+        specification_url: 'This is specifiation section Draft ETSI GS NFV-SOL 001 V0.6.0 (2018-3)'
+        description: >-
+             The VNF node type describes a VNF in terms of deployment and operational behaviour requirements, which it contains connectivity, interfaces and virtualised resource requirements, as defined by ETSI GS NFV-IFA 011 [1]. .
+      derived_from: tosca.groups.Root
+      properties:
+         description:
+             type: string
+      members: [tosca.nodes.nfv.VnfVirtualLink]

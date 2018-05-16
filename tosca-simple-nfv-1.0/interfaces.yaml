@@ -1,0 +1,108 @@
+interface_types:
+
+    tosca.interfaces.Root:
+     _extensions:
+      normative: true
+      shorthand_name: Root # ARIA NOTE: omitted in the spec
+      type_qualified_name: tosca:Root
+      specification: tosca-simple-1.0
+      specification_section: 5.7.3
+      specification_url: 'http://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.0/cos01/TOSCA-Simple-Profile-YAML-v1.0-cos01.html#_Ref384391055'
+     description: >-
+      This is the default (root) TOSCA Interface Type definition that all other TOSCA Interface Types derive from.
+
+    tosca.interfaces.nfv.vnf.lifecycle.Nfv:
+     _extensions:
+        normative: true
+        shorthand_name: Nfv
+        type_qualified_name: tosca:Nfv
+        specification: tosca-simple-nfv-1.0
+        specification_section: 6.7.2
+        specification_url: 'This is specifiation section Draft ETSI GS NFV-SOL 001 V0.6.0 (2018-3)'
+        description: >-
+            set of VNF LCM operations defined in ETSI GS NFV-IFA 007.
+        derived_from: tosca.interfaces.Root
+        instantiate:
+          description: >-
+            Invoked upon receipt of an Instantiate VNF request
+        instantiate_start: 
+          description: >-
+              Invoked before instantiate
+        instantiate_end:
+          description: >-
+              Invoked after instantiate
+        terminate:
+          description: >- 
+              Invoked upon receipt Terminate VNF request
+        terminate_start:
+          description: >- 
+              Invoked before terminate
+        terminate_end:
+          description: >-
+              Invoked after terminate
+        modify_information:
+          description: >-
+              Invoked upon receipt of a Modify VNF Information request
+        modify_information_start:
+          description: >-
+              Invoked before modify_information
+        modify_information_end:
+          description: >-
+              Invoked after modify_information
+        change_flavour:
+          description: >-
+              Invoked upon receipt of a Change VNF Flavour request
+        change_flavour_start:
+          description: >-
+              Invoked before change_flavour
+        change_flavour_end:
+          description: >-
+              Invoked after change_flavour
+        change_external_connectivity:
+          description: >-
+              Invoked upon receipt of a Change External VNF Connectivity request
+        change_external_connectivity_start:
+          description: >-
+              Invoked before change_external_connectivity
+        change_external_connectivity_end:
+          description: >-
+              Invoked after change_external_connectivity
+        operate:
+          description: >-
+              Invoked upon receipt of an Operate VNF request
+        operate_start:
+          description: >-
+              Invoked before operate
+        operate_end:
+          description: >-
+              Invoked after operate
+        heal:
+          description: >-
+              Invoked upon receipt of a Heal VNF request
+        heal_start:
+          description: >-
+              Invoked before heal
+        heal_end:
+          description: >-
+              Invoked after heal
+        scale:
+          description: >-
+              Invoked upon receipt of a Scale VNF request
+        scale_start:
+          description: >-
+              Invoked before scale
+        scale_end:
+          description: >-
+              Invoked after scale  
+        scale_to_level:
+          description: >-
+              Invoked upon receipt of a Scale VNF to Level request
+        scale_to_level_start:
+          description: >-
+              Invoked before scale_to_level
+        scale_to_level_end:
+          description: >-
+              Invoked after scale_to_level
+      #  indicator_changed:
+    #    description: On receiving a VNF indicator value change notification
+    
