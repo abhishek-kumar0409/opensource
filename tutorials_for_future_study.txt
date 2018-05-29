@@ -4,3 +4,5 @@ MultipartPython requests
 https://stackoverflow.com/questions/12385179/how-to-send-a-multipart-form-data-with-requests-in-python/12385661#12385661
 https://stackoverflow.com/questions/33404833/python-requests-post-multipart-form-data
 https://github.com/savan77/Practical-Machine-Learning-With-Python/tree/5925b272303d8f1b1fb1b44107e05943e70a4c41
+http://scikit-learn.org/stable/tutorial/basic/tutorial.html
+https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
