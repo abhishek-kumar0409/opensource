@@ -12,3 +12,8 @@ PyCon pandas tutorial
 https://github.com/brandon-rhodes/pycon-pandas-tutorial
 https://github.com/chendaniely/2016-pydata-carolinas-pandas
 https://github.com/guipsamora/pandas_exercises/tree/master/01_Getting_%26_Knowing_Your_Data
+
+Docker daemon running on tcp instead of socket
+===============================================
+
+https://success.docker.com/article/how-do-i-enable-the-remote-api-for-dockerd
